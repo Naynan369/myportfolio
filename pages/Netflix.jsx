@@ -20,8 +20,12 @@ const Netflix = () => {
                     <h2>Overview</h2>
                     <p>This app was built using React JS and is hosted on Firebase. Users are able to find any kind of movies with categories for instances, popular Movies and tvshowes user authentication also available so everyone can signup and signin to thier account with an email address in order to save your favorite Movies.
                         This is made possible with firebase database.</p>
+                        <a href="https://myproject-ecru-ten.vercel.app/">
                     <button className='px-8 py-2 mt-4 mr-8'>Demo</button>
+                        </a>
+                        <a href="https://github.com/Naynan369/myproject">
                     <button className='px-8 py-2 mt-4 '>Code</button>
+                        </a>
                 </div>
                 <div className='col-span-4 md:col-span-1 shadow-xl shadow-gray-400 rounded-xl p-4'>
                     <div className='p-2'>
