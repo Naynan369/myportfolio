@@ -3,6 +3,9 @@ import Link from 'next/link'
 import React from 'react'
 import NetflixImg from '../public/assets/projects/Netflix.png'
 import PaypalImg from '../public/assets/projects/Paypal.png'
+import CalculatorImg from '../public/assets/projects/Calculator.png'
+import GameImg from '../public/assets/projects/Game.png'
+import WeatherImg from '../public/assets/projects/Wather.png'
 import ProjectItem from './ProjectItem'
 const Projects = () => {
   return (
@@ -20,6 +23,21 @@ const Projects = () => {
             title='Payment App'
             backgroundImg={PaypalImg}
             projectUrl='/Paypal'
+          />
+          <ProjectItem
+            title='Calculator'
+            backgroundImg={CalculatorImg}
+            projectUrl='/Calculator'
+          />
+          <ProjectItem
+            title='Weather App'
+            backgroundImg={WeatherImg}
+            projectUrl='/Weather'
+          />
+          <ProjectItem
+            title='Game'
+            backgroundImg={GameImg}
+            projectUrl='/Game'
           />
         </div>
       </div>
