@@ -25,8 +25,8 @@ function About() {
             </span>
           </h2>
           <p className='text-gray-700 text-lg py-2 leading-relaxed'>
-            I’m a passionate full-stack developer with expertise in crafting modern web applications.
-            My journey began at 16, diving deep into technologies like React, Tailwind CSS, Firebase, Java, and MSSQL.
+            Im a passionate full-stack developer with expertise in crafting modern web applications.
+            My journey began at 18, diving deep into technologies like React, Tailwind CSS, Firebase, Java, and MSSQL.
           </p>
           <p className='text-gray-700 text-lg leading-relaxed'>
             I thrive in collaborative environments and continually explore innovative tools and methodologies to enhance my projects.
