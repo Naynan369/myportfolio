@@ -8,16 +8,16 @@ function Main() {
             <div className='max-w-[1240px] w-full h-full mx-auto px-4 flex justify-center items-center'>
                 <div>
                     <p className='uppercase text-sm tracking-widest text-gray-500'>
-                        Let’s build something special together
+                        Lets build something special together
                     </p>
                     <h1 className='py-4 text-gray-700'>
-                        Hi, I'm <span className='text-[#321]'>Samuel</span>
+                        Hi, Im <span className='text-[#321]'>Samuel</span>
                     </h1>
                     <h2 className='py-4 text-gray-700 text-xl'>
                         A Full-Stack Developer
                     </h2>
                     <p className='py-4 text-gray-800 max-w-[75%] mx-auto text-xl leading-relaxed'>
-                        I’m an experienced full-stack developer working on specialized projects. Currently, I’m focusing on enhancing my backend development skills to build exceptional mobile applications and powerful APIs.
+                        Im an experienced full-stack developer working on specialized projects. Currently, Im focusing on enhancing my backend development skills to build exceptional mobile applications and powerful APIs.
                     </p>
                     <div className='flex items-center justify-center space-x-6 py-6'>
                         <a href='https://www.linkedin.com/in/samuel-zewge-a47a03271' target='_blank' rel='noopener noreferrer'>
