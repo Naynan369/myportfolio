@@ -25,11 +25,6 @@ const Projects = () => {
             projectUrl='/Paypal'
           />
           <ProjectItem
-            title='Calculator'
-            backgroundImg={CalculatorImg}
-            projectUrl='/Calculator'
-          />
-          <ProjectItem
             title='Weather App'
             backgroundImg={WeatherImg}
             projectUrl='/Weather'
