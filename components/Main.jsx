@@ -1,34 +1,43 @@
 import React from 'react'
 import { AiOutlineMail } from 'react-icons/ai'
-import { FaFacebook, FaGithub, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { FaGithub, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 
 function Main() {
     return (
-        <div id='home' className='w-full h-screen text-center'>
-            <div className='max-w-[1240px] w-full h-full mx-auto p-2 flex justify-center items-center'>
+        <div id='home' className='w-full h-screen bg-gray-50 flex justify-center items-center text-center'>
+            <div className='max-w-[1240px] w-full h-full mx-auto px-4 flex justify-center items-center'>
                 <div>
-                    <p className='uppercase text-sm tracking-widest text-gray-600'>Lets build something special together</p>
-                    <h1 className='py-4 text-gray-700'>Hi, Im <span className='text-[#321]'>Samuel</span></h1>
-                    <h1 className='py-4 text-gray-700'>A Full-Stack-Developer</h1>
-                    <p className='py-4 text-gray-900 max-w-[70%] mx-auto'>Im an experienced full stack developer working on some special projects, currently im focusing on developing my skills with backend-developement to build an amazing mobile applications besides to build an api</p>
-                    <div className='flex items-center justify-between max-w-[330px] m-auto py-4'>
-                        <div className='rounded-full shadow-lg text-[#000fff] shadow-gray-300 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                            <a href='https://www.linkedin.com/in/samuel-zewge-a47a03271'>
+                    <p className='uppercase text-sm tracking-widest text-gray-500'>
+                        Let’s build something special together
+                    </p>
+                    <h1 className='py-4 text-gray-700'>
+                        Hi, I'm <span className='text-[#321]'>Samuel</span>
+                    </h1>
+                    <h2 className='py-4 text-gray-700 text-xl'>
+                        A Full-Stack Developer
+                    </h2>
+                    <p className='py-4 text-gray-800 max-w-[75%] mx-auto text-xl leading-relaxed'>
+                        I’m an experienced full-stack developer working on specialized projects. Currently, I’m focusing on enhancing my backend development skills to build exceptional mobile applications and powerful APIs.
+                    </p>
+                    <div className='flex items-center justify-center space-x-6 py-6'>
+                        <a href='https://www.linkedin.com/in/samuel-zewge-a47a03271' target='_blank' rel='noopener noreferrer'>
+                            <div className='rounded-full shadow-md text-[#0077b5] shadow-gray-300 p-5 cursor-pointer hover:scale-110 hover:bg-[#0077b5] hover:text-white transition-all duration-300 ease-in-out'>
                                 <FaLinkedinIn />
-                            </a>
-                        </div>
-                        <div className='rounded-full shadow-lg text-[#000000] shadow-gray-300 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                            <a href='https://github.com/Naynan369'>
+                            </div>
+                        </a>
+                        <a href='https://github.com/Naynan369' target='_blank' rel='noopener noreferrer'>
+                            <div className='rounded-full shadow-md text-gray-900 shadow-gray-300 p-5 cursor-pointer hover:scale-110 hover:bg-gray-900 hover:text-white transition-all duration-300 ease-in-out'>
                                 <FaGithub />
-                            </a>
-                        </div>
-                        <div className='rounded-full shadow-lg text-[#000fff] shadow-gray-300 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
+                            </div>
+                        </a>
+                        <div className='rounded-full shadow-md text-gray-700 shadow-gray-300 p-5 cursor-pointer hover:scale-110 hover:bg-gray-700 hover:text-white transition-all duration-300 ease-in-out'>
                             <AiOutlineMail />
                         </div>
-                        <div className='rounded-full shadow-lg text-[#ff000d] shadow-gray-300 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                            <FaYoutube />
-                        </div>
+                        <a href='https://www.youtube.com/' target='_blank' rel='noopener noreferrer'>
+                            <div className='rounded-full shadow-md text-[#FF0000] shadow-gray-300 p-5 cursor-pointer hover:scale-110 hover:bg-[#FF0000] hover:text-white transition-all duration-300 ease-in-out'>
+                                <FaYoutube />
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

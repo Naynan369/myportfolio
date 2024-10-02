@@ -1,28 +1,58 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Typewriter } from 'react-simple-typewriter';
+
 function About() {
   return (
-    <div id='about' className='w-full md:h-screen p-2 flex items-center py-16'>
-      <div className='max-w-[1240px] m-auto md:grid grid-cols-3 gap-8'>
-        <div className='col-span-2'>
-          <p className='py-4 uppercase text-3xl tracking-widest'>About</p>
-          <h2>Who I am!</h2>
-          <p className='text-[#ffa500] text-2xl'>*** Im not your ordinary developer ***</p>
-          <p>I am a full stack developer with years of experience in the industry. I have a passion for building innovative and user-friendly web applications from scratch, and I thrive in fast-paced and collaborative environments.
-            My journey into web development started when I was 16 years old, and I discovered my love for coding. Since then, I have honed my skills in various programming languages and frameworks, including Reactjs,Tailwind css, Firebase, Java, MSSQL and javascript. I am constantly learning and staying up-to-date with the latest industry trends, and I enjoy experimenting with new tools and technologies to find the best solutions for my clients.
-            Over the years, I have worked on a wide range of projects, from small-scale applications to complex enterprise systems. I take pride in my ability to deliver high-quality code that meets the specific needs of my clients while adhering to best practices and coding standards. I also value clear communication and collaboration with my team members, and I believe that building strong relationships is key to successful project outcomes.</p>
-        </div>
-        <div className='w-full h-auto m-auto shadow-xl shadow-gray-400 rounded-xl flex items-center justify-center p-4 hover:scale-110 ease-in duration-300'>
-          <img className='rounded-xl' src="https://images.wondershare.com/mockitt/ui-design/gui-python-introduction.jpg" alt="/" />
-        </div>
-        <Link href='/#projects'>
-          <p className='py-2 text-gray-600 underline cursor-pointer'>
-            Check out some of my latest projects.
+    <div id='about' className='w-full md:h-screen p-4 flex items-center py-16 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100'>
+      <div className='max-w-[1240px] m-auto md:grid grid-cols-3 gap-10 items-center'>
+        {/* Left Content */}
+        <div className='col-span-2 p-6 bg-white shadow-lg rounded-lg transition-transform duration-300 hover:scale-105'>
+          <p className='uppercase text-3xl tracking-widest text-gray-800 py-2'>About Me</p>
+          <h2 className='text-4xl font-bold text-gray-900 mb-2'>
+            Who I Am{' '}
+            <span className='text-[#ffa500]'>
+              <Typewriter
+                words={['A Full-Stack Developer', 'A Problem Solver', 'A Tech Enthusiast']}
+                loop={false}
+                cursor
+                cursorStyle='|'
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1500}
+              />
+            </span>
+          </h2>
+          <p className='text-gray-700 text-lg py-2 leading-relaxed'>
+            I’m a passionate full-stack developer with expertise in crafting modern web applications.
+            My journey began at 16, diving deep into technologies like React, Tailwind CSS, Firebase, Java, and MSSQL.
           </p>
-        </Link>
+          <p className='text-gray-700 text-lg leading-relaxed'>
+            I thrive in collaborative environments and continually explore innovative tools and methodologies to enhance my projects.
+          </p>
+          <Link href='/#projects'>
+            <p className='text-lg text-indigo-600 mt-4 underline cursor-pointer hover:text-indigo-400 transition duration-200'>
+              Check out my latest projects.
+            </p>
+          </Link>
+        </div>
+
+        {/* Right Image */}
+        <div className='w-full h-auto m-auto shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:shadow-xl mt-6 md:mt-0'>
+          <Image
+            className='rounded-lg'
+            src="https://images.wondershare.com/mockitt/ui-design/gui-python-introduction.jpg"
+            alt="Developer working"
+            width={400} // Adjust width
+            height={300} // Adjust height
+            layout="responsive" // Ensures the image is responsive
+            objectFit="cover"
+          />
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default About
+export default About;

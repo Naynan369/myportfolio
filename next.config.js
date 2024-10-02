@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  distDir:'.next'
+  distDir:'.next',
+  images: {
+    domains: ['images.wondershare.com']
+  }
 }
 
 module.exports = nextConfig
