@@ -6,6 +6,11 @@ import Nodejs from '../public/assets/skills/nodejs.png';
 import Github from '../public/assets/skills/github.png';
 import React from '../public/assets/skills/react.png';
 import Firebase from '../public/assets/skills/firebase.png';
+import Java from '../public/assets/skills/Java.png';
+import Python from '../public/assets/skills/Python.png';
+import Neo4j from '../public/assets/skills/Neo4j.png';
+import MongoDB from '../public/assets/skills/MongoDB.png';
+import MySQL from '../public/assets/skills/MySQL.png';
 
 function Skills() {
   return (
@@ -22,6 +27,11 @@ function Skills() {
             { src: Nodejs, title: 'Node.js' },
             { src: React, title: 'React' },
             { src: Firebase, title: 'Firebase' },
+            {src: Java, title: 'Java'},
+            {src: MySQL, title: 'MySQL'},
+            {src: Python, title: 'Python'},
+            {src: MongoDB, title: 'MongoDB'},
+            {src: Neo4j, title: 'Neo4j'},
           ].map((skill, index) => (
             <div
               key={index}
