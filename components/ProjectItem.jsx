@@ -4,13 +4,18 @@ import React from 'react'
 
 const ProjectItem = ({ title, backgroundImg, projectUrl }) => {
   return (
-    <div className='relative flex items-center justify-center h-auto w-full shadow-xl shadow-gray-400 rounded-xl p-4 group hover:bg-gradient-to-r from-[#5651e5] to-[#709dff]'>
-      <Image className='rounded-xl group-hover:opacity-10' src={backgroundImg} alt='/' />
-      <div className='hidden group-hover:block absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
-        <h3 className='text-2xl text-white tracking-wider text-center'>{title}</h3>
-        <p className='pb-4 pt-2 text-white text-center'>React Js</p>
+    <div className='group relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl'>
+      <div className='relative h-72 overflow-hidden'>
+        <Image src={backgroundImg} alt={title} layout='fill' objectFit='cover' className='transition duration-500 group-hover:scale-105' />
+      </div>
+      <div className='p-6'>
+        <p className='text-sm uppercase tracking-[0.25em] text-indigo-600'>Featured Project</p>
+        <h3 className='mt-4 text-2xl font-semibold text-slate-900'>{title}</h3>
+        <p className='mt-3 text-sm text-slate-600'>Well-crafted project with a clean interface and modern functionality.</p>
         <Link href={projectUrl}>
-          <p className='text-center py-3 rounded-lg bg-white text-gray-700 font-bold text-lg cursor-pointer'>More Info</p>
+          <a className='mt-6 inline-flex rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800'>
+            More Info
+          </a>
         </Link>
       </div>
     </div>

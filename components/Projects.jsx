@@ -1,43 +1,28 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 import NetflixImg from '../public/assets/projects/Netflix.png'
 import PaypalImg from '../public/assets/projects/Paypal.png'
-import CalculatorImg from '../public/assets/projects/Calculator.png'
 import GameImg from '../public/assets/projects/Game.png'
 import WeatherImg from '../public/assets/projects/Wather.png'
 import ProjectItem from './ProjectItem'
+
 const Projects = () => {
   return (
-    <div id='projects' className='w-full'>
-      <div className='max-w-[1240px] mx-auto px-2 py-16'>
-        <p className='text-xl tracking-widest uppercase text-[#5651e5]'>Projects</p>
-        <h1 className='py-4'>What Ive Built</h1>
-        <div className='grid md:grid-cols-2 gap-8'>
-          <ProjectItem
-            title='Movie Finder'
-            backgroundImg={NetflixImg}
-            projectUrl='/Netflix'
-          />
-          <ProjectItem
-            title='Payment App'
-            backgroundImg={PaypalImg}
-            projectUrl='/Paypal'
-          />
-          <ProjectItem
-            title='Weather App'
-            backgroundImg={WeatherImg}
-            projectUrl='/Weather'
-          />
-          <ProjectItem
-            title='Game'
-            backgroundImg={GameImg}
-            projectUrl='/Game'
-          />
+    <section id='projects' className='w-full scroll-mt-24 bg-slate-950/5 py-20'>
+      <div className='mx-auto max-w-[1140px] px-4'>
+        <div className='mx-auto max-w-3xl space-y-4 text-center'>
+          <p className='text-sm uppercase tracking-[0.35em] text-indigo-600'>Projects</p>
+          <h2 className='text-4xl font-extrabold text-slate-900'>Recent work with polished visual systems.</h2>
+          <p className='text-slate-600'>Each project showcases modern design, responsive interaction, and a refined user experience.</p>
+        </div>
+
+        <div className='grid gap-8 pt-12 md:grid-cols-2'>
+          <ProjectItem title='Movie Finder' backgroundImg={NetflixImg} projectUrl='/Netflix' />
+          <ProjectItem title='Payment App' backgroundImg={PaypalImg} projectUrl='/Paypal' />
+          <ProjectItem title='Weather App' backgroundImg={WeatherImg} projectUrl='/Weather' />
+          <ProjectItem title='Game' backgroundImg={GameImg} projectUrl='/Game' />
         </div>
       </div>
-
-    </div>
+    </section>
   )
 }
 

@@ -17,33 +17,27 @@ function Skills() {
   ];
 
   return (
-    <div id="skills" className="w-full lg:h-screen p-4 bg-gradient-to-b from-white to-gray-200">
-      <div className="max-w-[1240px] mx-auto flex flex-col justify-center h-full">
-        <p className="text-xl tracking-widest uppercase text-[#0000ff] text-center">Skills</p>
-        <h2 className="py-4 text-center text-4xl font-bold text-gray-800">What I Can Do?</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+    <section id='skills' className='w-full scroll-mt-24 bg-gradient-to-b from-white to-slate-200 py-20'>
+      <div className='mx-auto max-w-[1140px] px-4'>
+        <div className='mx-auto max-w-3xl text-center'>
+          <p className='text-xl tracking-widest uppercase text-indigo-600'>Skills</p>
+          <h2 className='py-4 text-4xl font-bold text-slate-900'>What I Excel At</h2>
+          <p className='text-slate-600'>Experience with clean front-end systems, strong back-end fundamentals, and modern tooling for fast development.</p>
+        </div>
+
+        <div className='grid gap-6 pt-12 md:grid-cols-2 lg:grid-cols-4'>
           {skills.map((skill, index) => (
-            <div
-              key={index}
-              className="relative p-6 bg-white shadow-xl rounded-xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              <div className="flex flex-col items-center justify-center">
-                <Image
-                  src={skill.src}
-                  width={64}
-                  height={64}
-                  alt={skill.title}
-                  className="mb-4"
-                />
-                <h3 className="text-lg font-semibold text-gray-700">{skill.title}</h3>
+            <div key={index} className='group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl'>
+              <div className='relative mx-auto mb-4 h-16 w-16 rounded-3xl bg-slate-50 p-3 transition duration-300 group-hover:bg-indigo-50'>
+                <Image src={skill.src} width={56} height={56} alt={skill.title} className='object-contain' />
               </div>
-              <div className="absolute inset-0 bg-indigo-500 opacity-0 transition-opacity duration-300 hover:opacity-30 rounded-xl" />
+              <h3 className='text-lg font-semibold text-slate-900'>{skill.title}</h3>
             </div>
           ))}
         </div>
       </div>
-    </div>
-  );
+    </section>
+  )
 }
 
 export default Skills;

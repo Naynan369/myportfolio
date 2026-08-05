@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { AiOutlineMail } from 'react-icons/ai';
@@ -5,112 +6,127 @@ import { FaGithub, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 import { HiOutlineChevronDoubleUp } from 'react-icons/hi';
 
 const Contact = () => {
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const formData = {
-            name: e.target.name.value,
-            phoneNumber: e.target.phoneNumber.value,
-            email: e.target.email.value,
-            subject: e.target.subject.value,
-            message: e.target.message.value,
-        };
-
-        const response = await fetch('/api/contact', {  // Use relative URL
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
-
-        if (response.ok) {
-            alert('Message sent successfully!');
-            e.target.reset(); // Optional: Reset the form after submission
-        } else {
-            alert('Error sending message.');
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = {
+      name: e.target.name.value,
+      phoneNumber: e.target.phoneNumber.value,
+      email: e.target.email.value,
+      subject: e.target.subject.value,
+      message: e.target.message.value,
     };
 
-    return (
-        <div id='contact' className='w-full lg:h-screen'>
-            <div className='max-w-[1240px] m-auto px-2 py-16 w-full'>
-                <p className='text-2xl tracking-widest uppercase text-orange-500'>Contact</p>
-                <h2>Get In Touch</h2>
-                <div className='grid lg:grid-cols-5 gap-8'>
-                    <div className='col-span-3 lg:col-span-2 w-full h-full shadow-xl shadow-gray-400 rounded-xl p-4'>
-                        <div className='lg:p-4 h-full'>
-                            <div>
-                                <img className='rounded-xl hover:scale-105 ease-in duration-300' src="https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80" alt="" />
-                            </div>
-                            <div>
-                                <h2 className='py-2'>Name here</h2>
-                                <p>Full-stack Developer</p>
-                                <p className='py-4'>Im available for freelance or full-time positions, contact me and lets talk.</p>
-                            </div>
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
 
-                            <div>
-                                <p className='pt-8'>Connect With Me</p>
-                                <div className='flex items-center justify-between py-4'>
-                                    <div className='rounded-full shadow-lg text-[#000fff] shadow-gray-300 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                                        <a href='https://www.linkedin.com/in/samuel-zewge-a47a03271'>
-                                            <FaLinkedinIn />
-                                        </a>
-                                    </div>
-                                    <div className='rounded-full shadow-lg text-[#000fff] shadow-gray-300 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                                        <a href='https://github.com/Naynan369'>
-                                            <FaGithub />
-                                        </a>
-                                    </div>
-                                    <div className='rounded-full shadow-lg text-[#000fff] shadow-gray-300 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                                        <AiOutlineMail />
-                                    </div>
-                                    <div className='rounded-full shadow-lg text-[#000fff] shadow-gray-300 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                                        <FaYoutube />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-span-3 w-full h-auto shadow-xl shadow-gray-400 rounded-xl lg:p-4'>
-                        <div className='p-4'>
-                            <form onSubmit={handleSubmit}>
-                                <div className='grid md:grid-cols-2 gap-4 w-full py-2'>
-                                    <div className='flex flex-col'>
-                                        <label className='uppercase text-sm py-2'>Name</label>
-                                        <input className='border-2 rounded-lg p-3 flex border-gray-300' type="text" name="name" required />
-                                    </div>
-                                    <div className='flex flex-col'>
-                                        <label className='uppercase text-sm py-2'>Phone Number</label>
-                                        <input className='border-2 rounded-lg p-3 flex border-gray-300' type="text" name="phoneNumber" required />
-                                    </div>
-                                </div>
-                                <div className='flex flex-col py-2'>
-                                    <label className='uppercase text-sm py-2'>Email</label>
-                                    <input className='border-2 rounded-lg p-3 flex border-gray-300' type="email" name="email" required />
-                                </div>
-                                <div className='flex flex-col py-2'>
-                                    <label className='uppercase text-sm py-2'>Subject</label>
-                                    <input className='border-2 rounded-lg p-3 flex border-gray-300' type="text" name="subject" required />
-                                </div>
-                                <div className='flex flex-col py-2'>
-                                    <label className='uppercase text-sm py-2'>Message</label>
-                                    <textarea className='border-2 rounded-lg p-3 border-gray-300' rows='10' name="message" required></textarea>
-                                </div>
-                                <button className='w-full p-4 text-gray-100 mt-4'>Send Message</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div className='flex justify-center py-12'>
-                    <Link href='/'>
-                        <div className='rounded-full shadow-lg text-[#000fff] shadow-gray-300 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                            <HiOutlineChevronDoubleUp className='text-[#5651e5]' size={30} />
-                        </div>
-                    </Link>
-                </div>
-            </div>
+    if (response.ok) {
+      alert('Message sent successfully!');
+      e.target.reset();
+    } else {
+      alert('Error sending message.');
+    }
+  };
+
+  return (
+    <section id='contact' className='w-full scroll-mt-24 bg-slate-950/5 py-20'>
+      <div className='mx-auto max-w-[1140px] px-4'>
+        <div className='mx-auto max-w-3xl text-center'>
+          <p className='text-sm uppercase tracking-[0.35em] text-indigo-600'>Contact</p>
+          <h2 className='py-4 text-4xl font-bold text-slate-900'>Ready to build something great?</h2>
+          <p className='text-slate-600'>Send a message and let’s discuss your next website or app.</p>
         </div>
-    );
-};
+
+        <div className='mt-12 grid gap-8 lg:grid-cols-[1.05fr_0.95fr]'>
+          <div className='rounded-[2rem] bg-white p-8 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.25)]'>
+            <div className='flex h-full flex-col justify-between gap-8'>
+              <div>
+                <div className='relative h-72 overflow-hidden rounded-[1.75rem]'>
+                  <Image
+                    src='https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80'
+                    alt='Professional contact'
+                    layout='fill'
+                    objectFit='cover'
+                    unoptimized
+                  />
+                </div>
+              </div>
+
+              <div>
+                <h3 className='text-2xl font-semibold text-slate-900'>Samuel Zewge</h3>
+                <p className='text-slate-600'>Full-stack Developer</p>
+                <p className='mt-4 text-slate-600'>I’m available for freelance or full-time positions. Let’s connect and create something impressive.</p>
+              </div>
+
+              <div>
+                <p className='text-sm uppercase tracking-[0.25em] text-slate-500'>Connect With Me</p>
+                <div className='mt-4 flex flex-wrap gap-4'>
+                  <a href='https://www.linkedin.com/in/samuel-zewge-a47a03271' target='_blank' rel='noreferrer' className='inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200'>
+                    <FaLinkedinIn />
+                  </a>
+                  <a href='https://github.com/Naynan369' target='_blank' rel='noreferrer' className='inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200'>
+                    <FaGithub />
+                  </a>
+                  <a href='mailto:hello@example.com' className='inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200'>
+                    <AiOutlineMail />
+                  </a>
+                  <a href='https://www.youtube.com/' target='_blank' rel='noreferrer' className='inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200'>
+                    <FaYoutube />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='rounded-[2rem] bg-white p-8 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.25)]'>
+            <form onSubmit={handleSubmit} className='space-y-6'>
+              <div className='grid gap-4 md:grid-cols-2'>
+                <label className='flex flex-col gap-2 text-sm text-slate-700'>
+                  Name
+                  <input className='rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500' type='text' name='name' required />
+                </label>
+                <label className='flex flex-col gap-2 text-sm text-slate-700'>
+                  Phone Number
+                  <input className='rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500' type='text' name='phoneNumber' required />
+                </label>
+              </div>
+
+              <label className='flex flex-col gap-2 text-sm text-slate-700'>
+                Email
+                <input className='rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500' type='email' name='email' required />
+              </label>
+
+              <label className='flex flex-col gap-2 text-sm text-slate-700'>
+                Subject
+                <input className='rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500' type='text' name='subject' required />
+              </label>
+
+              <label className='flex flex-col gap-2 text-sm text-slate-700'>
+                Message
+                <textarea className='min-h-[180px] rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500' rows='8' name='message' required />
+              </label>
+
+              <button type='submit' className='w-full rounded-full bg-slate-900 px-6 py-4 text-sm font-semibold text-white transition hover:bg-slate-800'>
+                Send Message
+              </button>
+            </form>
+
+            <div className='mt-10 flex justify-center'>
+              <Link href='/'>
+                <a className='inline-flex items-center justify-center rounded-full bg-slate-100 p-4 text-slate-900 shadow-sm transition hover:scale-105'>
+                  <HiOutlineChevronDoubleUp size={28} />
+                </a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default Contact;

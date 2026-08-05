@@ -1,64 +1,61 @@
 import Image from 'next/image'
-import React from 'react'
-import NetflixImg from '../public/assets/projects/Netflix.png'
-import { RiRadioButtonFill } from 'react-icons/ri'
 import Link from 'next/link'
-const Netflix = () => {
-    return (
-        <div className='w-full'>
-            <div className='w-screen h-[30vh] lg:h-[40vh] relative'>
-                <div className='absolute top-0 left-0 w-full h-[30vh] lg:h-[40vh] bg-black/80 z-10' />
-                <Image className='absolute z-1' layout='fill' objectFit='cover' src={NetflixImg} />
-                <div className='absolute top-[70%] max-w-[1240px] w-full left-[50%] right-[50%] translate-x-[-50%] translate-y-[-50%] text-white z-10 p-2'>
-                    <h2 className='py-2'>Movie Finder</h2>
-                    <p>React Js / Tailwind / Firebase</p>
-                </div>
-            </div>
-            <div className='max-w-[1240px] mx-auto p-2 grid md:grid-cols-5 gap-8 pt-8'>
-                <div className='col-span-4'>
-                    <p>Project</p>
-                    <h2>Overview</h2>
-                    <p>This app was built using React JS and is hosted on Firebase. Users are able to find any kind of movies with categories for instances, popular Movies and tvshowes user authentication also available so everyone can signup and signin to thier account with an email address in order to save your favorite Movies.
-                        This is made possible with firebase database.</p>
-                        <a href="https://myproject-ecru-ten.vercel.app/">
-                    <button className='px-8 py-2 mt-4 mr-8'>Demo</button>
-                        </a>
-                        <a href="https://github.com/Naynan369/myproject">
-                    <button className='px-8 py-2 mt-4 '>Code</button>
-                        </a>
-                </div>
-                <div className='col-span-4 md:col-span-1 shadow-xl shadow-gray-400 rounded-xl p-4'>
-                    <div className='p-2'>
-                        <p className='text-center font-bold pb-2'>Technologies</p>
-                        <div className='grid grid-cols-3 md:grid-cols-1'>
-                            <p className='text-gray-600 py-2 flex items-center'>
-                                <RiRadioButtonFill className='pr-1' />React
-                            </p>
-                        </div>
-                        <div>
-                            <p className='text-gray-600 py-2 flex items-center'>
-                                <RiRadioButtonFill className='pr-1' />Tailwind
-                            </p>
-                        </div>
-                        <div>
-                            <p className='text-gray-600 py-2 flex items-center'>
-                                <RiRadioButtonFill className='pr-1' />Firebase
-                            </p>
-                        </div>
-                        <div>
-                            <p className='text-gray-600 py-2 flex items-center'>
-                                <RiRadioButtonFill className='pr-1' />Javascript
-                            </p>
-                        </div>
-                    </div>
+import React from 'react'
+import { RiRadioButtonFill } from 'react-icons/ri'
+import NetflixImg from '../public/assets/projects/Netflix.png'
 
-                </div>
-            </div>
-            <Link href='/#projects'>
-                <p className='underline cursor-pointer'>Back</p>
-            </Link>
+const Netflix = () => {
+  return (
+    <main className='min-h-screen bg-slate-50'>
+      <section className='relative w-full overflow-hidden'>
+        <div className='relative h-[35vh] sm:h-[45vh] lg:h-[55vh]'>
+          <Image src={NetflixImg} alt='Movie Finder project' layout='fill' objectFit='cover' className='brightness-75' />
+          <div className='absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/60' />
+          <div className='absolute bottom-8 left-1/2 right-1/2 mx-auto w-full max-w-[1240px] px-4 text-white sm:left-16 sm:right-auto'>
+            <p className='text-sm uppercase tracking-[0.4em] text-indigo-300'>Movie Finder</p>
+            <h1 className='mt-4 text-4xl font-semibold sm:text-5xl'>React / Tailwind / Firebase</h1>
+          </div>
         </div>
-    )
+      </section>
+
+      <section className='mx-auto max-w-[1240px] px-4 py-16'>
+        <div className='grid gap-10 lg:grid-cols-[2fr_1fr]'>
+          <div className='space-y-6'>
+            <span className='text-sm uppercase tracking-[0.3em] text-indigo-600'>Project Overview</span>
+            <h2 className='text-3xl font-semibold text-slate-900'>Movie Finder</h2>
+            <p className='text-slate-600 leading-8'>
+              A polished movie search experience built with React and Tailwind. Users can browse categories, search titles, and save favorites through secure authentication.
+            </p>
+            <div className='flex flex-wrap gap-4'>
+              <a href='https://myproject-ecru-ten.vercel.app/' target='_blank' rel='noreferrer' className='inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800'>
+                View Demo
+              </a>
+              <a href='https://github.com/Naynan369/myproject' target='_blank' rel='noreferrer' className='inline-flex rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50'>
+                View Code
+              </a>
+            </div>
+          </div>
+
+          <aside className='rounded-3xl border border-slate-200 bg-white p-6 shadow-lg'>
+            <p className='text-sm uppercase tracking-[0.3em] text-slate-500'>Technologies</p>
+            <div className='mt-6 space-y-3'>
+              {['React', 'Tailwind CSS', 'Firebase', 'JavaScript'].map((tech) => (
+                <p key={tech} className='flex items-center gap-2 text-slate-700'>
+                  <RiRadioButtonFill className='text-indigo-500' /> {tech}
+                </p>
+              ))}
+            </div>
+          </aside>
+        </div>
+
+        <div className='mt-14'>
+          <Link href='/#projects'>
+            <a className='text-sm font-medium text-indigo-600 hover:underline'>← Back to projects</a>
+          </Link>
+        </div>
+      </section>
+    </main>
+  )
 }
 
 export default Netflix
