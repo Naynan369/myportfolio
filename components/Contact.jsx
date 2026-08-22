@@ -45,7 +45,7 @@ const Contact = () => {
           <div className='rounded-[2rem] bg-white p-8 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.25)]'>
             <div className='flex h-full flex-col justify-between gap-8'>
               <div>
-                <div className='relative h-72 overflow-hidden rounded-[1.75rem]'>
+                <div className='relative h-48 sm:h-64 md:h-72 overflow-hidden rounded-[1.75rem]'>
                   <Image
                     src='https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80'
                     alt='Professional contact'

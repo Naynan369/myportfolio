@@ -2,7 +2,7 @@ import React from 'react'
 import NetflixImg from '../public/assets/projects/Netflix.png'
 import PaypalImg from '../public/assets/projects/Paypal.png'
 import GameImg from '../public/assets/projects/Game.png'
-import WeatherImg from '../public/assets/projects/Wather.png'
+import EcommerceImg from '../public/assets/projects/Ecommerce.png'
 import ProjectItem from './ProjectItem'
 
 const Projects = () => {
@@ -18,8 +18,8 @@ const Projects = () => {
         <div className='grid gap-8 pt-12 md:grid-cols-2'>
           <ProjectItem title='Movie Finder' backgroundImg={NetflixImg} projectUrl='/Netflix' />
           <ProjectItem title='Payment App' backgroundImg={PaypalImg} projectUrl='/Paypal' />
-          <ProjectItem title='Weather App' backgroundImg={WeatherImg} projectUrl='/Weather' />
           <ProjectItem title='Game' backgroundImg={GameImg} projectUrl='/Game' />
+          <ProjectItem title='Ecommerce' backgroundImg={EcommerceImg} projectUrl='/Ecommerce' />
         </div>
       </div>
     </section>

@@ -27,7 +27,7 @@ const Game = () => {
               A polished browser game built with React and modern styling for a fast, engaging user experience. The interface is designed to feel playful while remaining clean and intuitive.
             </p>
             <div className='flex flex-wrap gap-4'>
-              <a href='https://javascript-game-1ku7.vercel.app/' target='_blank' rel='noreferrer' className='inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800'>
+              <a href='https://javascript-game-sigma.vercel.app' target='_blank' rel='noreferrer' className='inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800'>
                 View Demo
               </a>
               <a href='https://github.com/Naynan369/javascript-game-' target='_blank' rel='noreferrer' className='inline-flex rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50'>

@@ -27,7 +27,7 @@ const Netflix = () => {
               A polished movie search experience built with React and Tailwind. Users can browse categories, search titles, and save favorites through secure authentication.
             </p>
             <div className='flex flex-wrap gap-4'>
-              <a href='https://myproject-ecru-ten.vercel.app/' target='_blank' rel='noreferrer' className='inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800'>
+              <a href='https://myproject-beta-cyan.vercel.app' target='_blank' rel='noreferrer' className='inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800'>
                 View Demo
               </a>
               <a href='https://github.com/Naynan369/myproject' target='_blank' rel='noreferrer' className='inline-flex rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50'>

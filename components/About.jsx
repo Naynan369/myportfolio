@@ -47,7 +47,7 @@ function About() {
         </div>
 
         <div className='relative overflow-hidden rounded-[2rem] shadow-[0_30px_80px_-40px_rgba(15,23,42,0.25)]'>
-          <div className='relative h-[520px] w-full'>
+          <div className='relative h-64 sm:h-80 md:h-96 lg:h-[520px] w-full'>
               <Image
                 src={ProfilePic}
                 alt='Samuel portrait'

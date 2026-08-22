@@ -27,7 +27,7 @@ const Paypal = () => {
               A clean payment experience with secure authentication and PayPal checkout support. The app is designed to make payments fast and intuitive for every user.
             </p>
             <div className='flex flex-wrap gap-4'>
-              <a href='https://test-app-1mt.pages.dev/' target='_blank' rel='noreferrer' className='inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800'>
+              <a href='https://test-app-t417.vercel.app/' target='_blank' rel='noreferrer' className='inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800'>
                 View Demo
               </a>
               <a href='https://github.com/Naynan369/test-app' target='_blank' rel='noreferrer' className='inline-flex rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50'>
