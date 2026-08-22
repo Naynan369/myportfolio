@@ -85,17 +85,17 @@ const Resume = () => {
               </div>
 
               <div className='rounded-3xl bg-slate-50 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold text-slate-900'>Weather App</h3>
-                <p className='mt-2 text-slate-600'>Small app that consumes a weather API to show current conditions and forecasts.</p>
-                <Link href='/Weather'>
+                <h3 className='text-xl font-semibold text-slate-900'>TicToe Game</h3>
+                <p className='mt-2 text-slate-600'>Created a React and CSS3 browser game with an interactive UI, offering both human-vs-human and human-vs-AI gameplay modes.</p>
+                <Link href='/Game'>
                   <a className='mt-4 inline-block text-indigo-600 hover:underline'>View project</a>
                 </Link>
               </div>
 
               <div className='rounded-3xl bg-slate-50 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold text-slate-900'>Interactive Game</h3>
-                <p className='mt-2 text-slate-600'>A lightweight browser game showcasing UI state management and interactive feedback.</p>
-                <Link href='/Game'>
+                <h3 className='text-xl font-semibold text-slate-900'>E-commerce Sales Analytics</h3>
+                <p className='mt-2 text-slate-600'>Analyzed two years of retail data using Python, Pandas, Excel, and Power BI; built an RFM customer-segmentation dashboard for revenue, orders, products, countries, and customer insights.</p>
+                <Link href='/Ecommerce'>
                   <a className='mt-4 inline-block text-indigo-600 hover:underline'>View project</a>
                 </Link>
               </div>
