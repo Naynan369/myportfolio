@@ -1,25 +1,33 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 
-const ProjectItem = ({ title, backgroundImg, projectUrl }) => {
+export default function ProjectItem({ project, index, total }) {
   return (
-    <div className='group relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl'>
-      <div className='relative h-56 sm:h-72 md:h-80 lg:h-96 overflow-hidden'>
-        <Image src={backgroundImg} alt={title} layout='fill' objectFit='cover' className='transition duration-500 group-hover:scale-105' />
-      </div>
-      <div className='p-6'>
-        <p className='text-sm uppercase tracking-[0.25em] text-indigo-600'>Featured Project</p>
-        <h3 className='mt-4 text-2xl font-semibold text-slate-900'>{title}</h3>
-        <p className='mt-3 text-sm text-slate-600'>Well-crafted project with a clean interface and modern functionality.</p>
-        <Link href={projectUrl}>
-          <a className='mt-6 inline-flex rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800'>
-            More Info
-          </a>
+    <article className={'project-card project-card--' + project.slug}>
+      <div className='project-card-content'>
+        <div className='project-meta'>
+          <span className='project-category'>{project.category}</span>
+          <span className='project-count'>{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
+        </div>
+        <div className='project-card-main'>
+          <h3>{project.title}</h3>
+          <p className='project-summary'>{project.summary}</p>
+          <ul className='project-tools' aria-label='Tools used'>
+            {project.tools.slice(0, 3).map((tool) => <li key={tool}>{tool}</li>)}
+          </ul>
+        </div>
+        <Link href={project.route}>
+          <a className='project-read' aria-label={'Read about ' + project.title}>Explore case study</a>
         </Link>
       </div>
-    </div>
+      <Link href={project.route}>
+        <a className='project-visual' aria-label={'View ' + project.title + ' project'}>
+          <span className='project-device'>
+            <span className='project-device-bar' aria-hidden='true'><i /><i /><i /><span>{project.title}</span></span>
+            <span className='project-screen'><Image src={project.image} alt={project.imageAlt} layout='fill' objectFit='cover' quality={90} /></span>
+          </span>
+        </a>
+      </Link>
+    </article>
   )
 }
-
-export default ProjectItem

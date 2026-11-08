@@ -1,119 +1,76 @@
-import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
+import Contact from '../components/Contact'
+import { projects } from '../lib/projects'
 
-const Resume = () => {
-  return (
-    <>
-      <Head>
-        <title>Samuel | Resume</title>
-        <meta name='description' content='Experienced web developer building professional and modern digital experiences.' />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
+const featuredSlugs = ['ecommerce', 'habesha-brokers', 'evently']
+const featuredProjects = featuredSlugs.map(slug => projects.find(project => project.slug === slug))
 
-      <main className='min-h-screen bg-slate-50 py-20'>
-        <div className='mx-auto max-w-[960px] rounded-[2rem] border border-slate-200 bg-white px-6 py-10 shadow-2xl sm:px-10 sm:py-14'>
-          <header className='text-center mb-12'>
-            <h1 className='text-5xl font-extrabold text-slate-900'>Samuel Zewge</h1>
-            <p className='mt-3 text-xl text-slate-600'>Front-End Web Developer</p>
-            <div className='mt-6 flex justify-center gap-6 text-slate-600'>
-              <a href='https://www.linkedin.com/in/samuel-zewge-a47a03271' target='_blank' rel='noreferrer' className='transition hover:text-blue-600'>
-                <FaLinkedinIn size={28} />
-              </a>
-              <a href='https://github.com/Naynan369' target='_blank' rel='noreferrer' className='transition hover:text-slate-900'>
-                <FaGithub size={28} />
-              </a>
-            </div>
-          </header>
+const skillGroups = [
+  { title: 'Data & analytics', items: 'Python, Pandas, NumPy, Jupyter, SQL, Power BI, Excel, RFM segmentation, statistical modelling' },
+  { title: 'Software', items: 'JavaScript, Java, React, Next.js, Node.js, Express.js, REST APIs, Firebase, HTML, CSS, Tailwind CSS' },
+  { title: 'Databases & tools', items: 'PostgreSQL, MySQL, Microsoft SQL Server, MongoDB, Neo4j, Git, Docker, Linux' },
+]
 
-          <section className='mb-12'>
-            <div className='mb-6 border-b border-slate-200 pb-4'>
-              <h2 className='text-3xl font-semibold text-slate-900'>Summary</h2>
-            </div>
-            <p className='text-lg leading-8 text-slate-600'>
-              Dedicated Front-End Developer with experience creating polished, responsive websites and web applications. I combine strong UI design awareness with practical development skills to deliver high-quality digital products for clients and teams.
-            </p>
-          </section>
-
-          <section className='mb-12'>
-            <div className='mb-6 border-b border-slate-200 pb-4'>
-              <h2 className='text-3xl font-semibold text-slate-900'>Skills</h2>
-            </div>
-            <div className='grid gap-6 sm:grid-cols-2'>
-              <div className='rounded-3xl bg-slate-50 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold text-slate-900'>Technical Skills</h3>
-                <ul className='mt-5 space-y-3 text-slate-600'>
-                  <li>HTML5, CSS3, JavaScript (ES6+)</li>
-                  <li>React.js, Next.js, Tailwind CSS</li>
-                  <li>Responsive Web Design</li>
-                  <li>Firebase, API Integration</li>
-                </ul>
-              </div>
-              <div className='rounded-3xl bg-slate-50 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold text-slate-900'>Development Expertise</h3>
-                <ul className='mt-5 space-y-3 text-slate-600'>
-                  <li>Modern UI / UX Implementation</li>
-                  <li>Performance & Accessibility</li>
-                  <li>Cross-Browser Reliability</li>
-                  <li>Component-Based Architecture</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section className='mb-12'>
-            <div className='mb-6 border-b border-slate-200 pb-4'>
-              <h2 className='text-3xl font-semibold text-slate-900'>Relevant Projects & Experience</h2>
-            </div>
-
-            <div className='grid gap-6 sm:grid-cols-2'>
-              <div className='rounded-3xl bg-slate-50 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold text-slate-900'>Movie Finder</h3>
-                <p className='mt-2 text-slate-600'>Personal project built with React and Next.js to search movies and display details.</p>
-                <Link href='/Netflix'>
-                  <a className='mt-4 inline-block text-indigo-600 hover:underline'>View project</a>
-                </Link>
-              </div>
-
-              <div className='rounded-3xl bg-slate-50 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold text-slate-900'>Payment App</h3>
-                <p className='mt-2 text-slate-600'>A UI-focused payment demo demonstrating form handling and responsive layout.</p>
-                <Link href='/Paypal'>
-                  <a className='mt-4 inline-block text-indigo-600 hover:underline'>View project</a>
-                </Link>
-              </div>
-
-              <div className='rounded-3xl bg-slate-50 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold text-slate-900'>TicToe Game</h3>
-                <p className='mt-2 text-slate-600'>Created a React and CSS3 browser game with an interactive UI, offering both human-vs-human and human-vs-AI gameplay modes.</p>
-                <Link href='/Game'>
-                  <a className='mt-4 inline-block text-indigo-600 hover:underline'>View project</a>
-                </Link>
-              </div>
-
-              <div className='rounded-3xl bg-slate-50 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold text-slate-900'>E-commerce Sales Analytics</h3>
-                <p className='mt-2 text-slate-600'>Analyzed two years of retail data using Python, Pandas, Excel, and Power BI; built an RFM customer-segmentation dashboard for revenue, orders, products, countries, and customer insights.</p>
-                <Link href='/Ecommerce'>
-                  <a className='mt-4 inline-block text-indigo-600 hover:underline'>View project</a>
-                </Link>
-              </div>
-            </div>
-
-            <p className='mt-6 text-sm text-slate-600'>Note: I am early in my professional development and focused on building strong, demonstrable projects and rapidly improving my skills.</p>
-          </section>
-
-          <div className='flex flex-col items-center gap-4 border-t border-slate-200 pt-8 text-center text-sm text-slate-500'>
-            <p>© {new Date().getFullYear()} Samuel Zewge. All Rights Reserved.</p>
-            <Link href='/#contact'>
-              <a className='text-indigo-600 hover:underline'>Contact me for new opportunities</a>
-            </Link>
+export default function Resume() {
+  return <>
+    <Head>
+      <title>Résumé — Samuel Z. Tadesse</title>
+      <meta name='description' content='Education, skills, and selected projects of Samuel Z. Tadesse, data analysis student and software developer.' />
+      <link rel='icon' href='/favicon.svg' />
+    </Head>
+    <main id='home' className='resume-page'>
+      <div className='container'>
+        <Link href='/'><a className='back-link'>Back to home</a></Link>
+        <div className='resume-header'>
+          <div>
+            <p className='eyebrow'>Résumé / Samuel Z. Tadesse</p>
+            <h1>Data, software, <em>and curiosity.</em></h1>
+          </div>
+          <div className='resume-header-aside'>
+            <p>Data Analysis student at the University of Messina, seeking a curricular internship in data or BI analytics.</p>
+            <a className='button button-light' href='/Samuel_Tadesse_CV.pdf' download>Download CV (PDF)</a>
           </div>
         </div>
-      </main>
-    </>
-  )
+        <div className='resume-layout'>
+          <div className='resume-main'>
+            <section>
+              <p className='eyebrow'>01 / Profile</p>
+              <h2>What I bring</h2>
+              <p>I turn raw data into dashboards and customer insights with Python, SQL, and Power BI. My software background helps me build useful tools around the analysis, from React interfaces to full-stack applications.</p>
+              <p>Based in Messina, Italy. Available for a curricular internship on-site in Sicily or remotely in Italy or the EU.</p>
+            </section>
+            <section>
+              <p className='eyebrow'>02 / Education</p>
+              <h2>Studies</h2>
+              <div className='resume-education'>
+                <div><div className='resume-education-head'><h3>University of Messina</h3><span>2023 – present</span></div><p>B.Sc. Data Analysis · Messina, Italy · Expected graduation 2027</p><p>Statistical Methods &amp; Models, Machine Learning, Data Structures &amp; Algorithms, Databases, and Programming Languages.</p></div>
+                <div><div className='resume-education-head'><h3>American College of Technology</h3><span>2022 – 2023</span></div><p>Computer Science · Addis Ababa, Ethiopia</p><p>Completed one year before transferring to the University of Messina. Coursework included Web Programming, Databases, and Computer Networks.</p></div>
+              </div>
+            </section>
+            <section>
+              <p className='eyebrow'>03 / Selected projects</p>
+              <h2>Work</h2>
+              <div className='resume-projects'>
+                {featuredProjects.map(project => <div key={project.slug}><Link href={project.route}><a>{project.title}</a></Link><p>{project.summary}</p></div>)}
+              </div>
+              <Link href='/#projects'><a className='text-link'>Explore all projects</a></Link>
+            </section>
+          </div>
+          <aside>
+            <p className='eyebrow'>04 / Capabilities</p>
+            {skillGroups.map(group => <div className='resume-skills' key={group.title}><h3>{group.title}</h3><p>{group.items}</p></div>)}
+            <div className='resume-skills'><h3>Languages</h3><p>Amharic: native · English: C1 · Italian: B1</p></div>
+            <div className='resume-connect'>
+              <p className='eyebrow'>Connect</p>
+              <a href='mailto:samuel.zewge@icloud.com'>samuel.zewge@icloud.com</a>
+              <a href='https://github.com/Naynan369' target='_blank' rel='noopener noreferrer'>GitHub</a>
+              <a href='https://www.linkedin.com/in/samuel369' target='_blank' rel='noopener noreferrer'>LinkedIn</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <Contact />
+  </>
 }
-
-export default Resume

@@ -1,154 +1,61 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
-import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai'
-import { FaGithub, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
-import NavLogo from '../public/assets/logo.png'
-import ProfilePic from '../public/assets/my.jpeg'
+import { useEffect, useState } from 'react'
 
-const Navbar = () => {
-  const [navOpen, setNavOpen] = useState(false)
-  const [shadow, setShadow] = useState(false)
+const links = [
+  { href: '/#home', label: 'Home' },
+  { href: '/#about', label: 'About' },
+  { href: '/#projects', label: 'Selected work' },
+  { href: '/#skills', label: 'Capabilities' },
+  { href: '/resume', label: 'Résumé' },
+  { href: '/#contact', label: 'Contact' },
+]
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false)
+  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
-    const handleShadow = () => setShadow(window.scrollY >= 90)
-    window.addEventListener('scroll', handleShadow)
-    return () => window.removeEventListener('scroll', handleShadow)
+    setTheme(document.documentElement.dataset.theme || 'dark')
   }, [])
 
-  const menuItems = [
-    { href: '/', label: 'Home' },
-    { href: '/#about', label: 'About' },
-    { href: '/#skills', label: 'Skills' },
-    { href: '/resume', label: 'Resume' },
-    { href: '/#projects', label: 'Projects' },
-    { href: '/#contact', label: 'Contact' },
-  ]
+  useEffect(() => {
+    if (!open) return undefined
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const closeOnEscape = (event) => { if (event.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [open])
 
-  const headerClass = shadow
-    ? 'fixed left-0 top-0 z-50 w-full transition duration-300 bg-white/95 shadow-2xl backdrop-blur-xl'
-    : 'fixed left-0 top-0 z-50 w-full transition duration-300 bg-white/80 backdrop-blur-lg'
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark'
+    document.documentElement.dataset.theme = nextTheme
+    window.localStorage.setItem('portfolio-theme', nextTheme)
+    setTheme(nextTheme)
+  }
 
   return (
-    <>
-      <header className={headerClass}>
-        <div className='mx-auto flex h-20 max-w-[1240px] items-center justify-between px-4 sm:px-6 lg:px-8'>
-          <Link href='/'>
-            <a className='flex items-center gap-3 text-slate-900'>
-              <Image src={NavLogo} alt='Samuel logo' width={48} height={48} className='rounded-full' />
-              <div>
-                <p className='text-base font-semibold'>Samuel Zewge</p>
-                <p className='text-xs uppercase tracking-[0.25em] text-slate-500'>Full Stack</p>
-              </div>
-            </a>
-          </Link>
-
-          <nav className='hidden items-center gap-8 text-sm uppercase text-slate-700 md:flex'>
-            {menuItems.map((item) => (
-              <Link href={item.href} key={item.href}>
-                <a className='relative transition duration-200 hover:text-slate-900 hover:before:absolute hover:before:-bottom-2 hover:before:left-0 hover:before:h-0.5 hover:before:w-full hover:before:bg-indigo-600'>
-                  {item.label}
-                </a>
-              </Link>
-            ))}
-          </nav>
-
-          <div className='hidden items-center md:flex md:gap-4'>
-            <Link href='/#about'>
-              <a className='inline-flex items-center rounded-full ring-1 ring-slate-100 hover:ring-indigo-300'>
-                <Image src={ProfilePic} alt='Samuel' width={40} height={40} className='rounded-full object-cover' />
-              </a>
-            </Link>
-          </div>
-
-          {!navOpen && (
-            <button
-              type='button'
-              onClick={() => setNavOpen(true)}
-              className='md:hidden rounded-full border border-slate-200 bg-white p-2 text-slate-900 shadow-sm transition duration-200 hover:bg-slate-50'
-              aria-label='Open menu'
-            >
-              <AiOutlineMenu size={24} />
-            </button>
-          )}
+    <header className={open ? 'site-header menu-active' : 'site-header'}>
+      <div className='container nav-inner'>
+        <Link href='/'><a className='brand' onClick={() => setOpen(false)} aria-label='Samuel Z. Tadesse, home'><span className='brand-mark'>ST.</span><span className='brand-copy'><strong>Samuel Z. Tadesse</strong><small>Developer &amp; data analyst</small></span></a></Link>
+        <div className='nav-signature' aria-hidden='true'><span className='nav-signal' />Web / Data / Interaction</div>
+        <div className='nav-actions'>
+          <button className='theme-toggle' type='button' onClick={toggleTheme} aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} aria-pressed={theme === 'dark'} title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+            <svg className='theme-sun' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.7' aria-hidden='true'><circle cx='12' cy='12' r='4' /><path d='M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42' /></svg>
+            <svg className='theme-moon' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.7' aria-hidden='true'><path d='M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z' /></svg>
+          </button>
+          <button className={open ? 'menu-toggle is-open' : 'menu-toggle'} type='button' aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls='primary-navigation' onClick={() => setOpen(!open)}><span className='menu-label'>{open ? 'Close' : 'Menu'}</span><span className='hamburger-lines' aria-hidden='true'><i /><i /><i /></span></button>
         </div>
-
-        {navOpen && (
-          <div className='fixed inset-0 z-50 md:hidden'>
-            <div className='absolute inset-0 bg-slate-950/50' onClick={() => setNavOpen(false)} />
-            <button
-              type='button'
-              onClick={() => setNavOpen(false)}
-              aria-label='Close menu'
-              className='absolute right-4 top-5 z-30 rounded-full border border-slate-200 bg-white p-2 text-slate-900 shadow-sm transition duration-200 hover:bg-slate-50'
-            >
-              <AiOutlineClose size={24} />
-            </button>
-
-            <div className='relative h-full w-4/5 max-w-sm bg-white p-6 shadow-2xl border-r border-slate-200'>
-              <div className='flex items-center justify-between'>
-                <Link href='/'>
-                  <a className='flex items-center gap-3 text-slate-900'>
-                    <Image src={NavLogo} alt='Samuel logo' width={42} height={42} className='rounded-full' />
-                    <span className='text-lg font-semibold'>Samuel</span>
-                  </a>
-                </Link>
-              </div>
-
-              <div className='mt-10 space-y-4'>
-                {menuItems.map((item) => (
-                  <Link href={item.href} key={item.href}>
-                    <a
-                      onClick={() => setNavOpen(false)}
-                      className='block rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-100'
-                    >
-                      {item.label}
-                    </a>
-                  </Link>
-                ))}
-              </div>
-
-              <div className='mt-10 border-t border-slate-200 pt-6'>
-                <p className='text-sm uppercase tracking-[0.3em] text-slate-500'>Connect</p>
-                <div className='mt-4 flex items-center gap-3'>
-                  <a
-                    href='https://www.linkedin.com/in/samuel-zewge-a47a03271'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='rounded-full bg-slate-100 p-3 text-slate-700 transition hover:bg-slate-200'
-                  >
-                    <FaLinkedinIn size={18} />
-                  </a>
-                  <a
-                    href='https://github.com/Naynan369'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='rounded-full bg-slate-100 p-3 text-slate-700 transition hover:bg-slate-200'
-                  >
-                    <FaGithub size={18} />
-                  </a>
-                  <a
-                    href='mailto:hello@example.com'
-                    className='rounded-full bg-slate-100 p-3 text-slate-700 transition hover:bg-slate-200'
-                  >
-                    <AiOutlineMail size={18} />
-                  </a>
-                  <a
-                    href='https://www.youtube.com/'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='rounded-full bg-slate-100 p-3 text-slate-700 transition hover:bg-slate-200'
-                  >
-                    <FaYoutube size={18} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </header>
-    </>
+      </div>
+      <nav id='primary-navigation' className={open ? 'site-nav is-open' : 'site-nav'} aria-label='Main navigation' aria-hidden={!open}>
+        <div className='container menu-layout'>
+          <div className='menu-links'>{links.map(link => <Link href={link.href} key={link.href}><a onClick={() => setOpen(false)}>{link.label}</a></Link>)}</div>
+          <div className='menu-aside'><p className='eyebrow'>A little more</p><div className='menu-art'><span>Code with character.<br />Data with direction.</span></div><div className='menu-aside-bottom'><span>Samuel Z. Tadesse<br />Developer &amp; data analyst</span><a href='https://www.linkedin.com/in/samuel369' target='_blank' rel='noopener noreferrer'>Connect</a></div></div>
+        </div>
+      </nav>
+    </header>
   )
 }
-
-export default Navbar

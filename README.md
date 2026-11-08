@@ -1,38 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Samuel Z. Tadesse portfolio
 
-## Getting Started
+A personal portfolio built with Next.js and React. It includes a homepage, a résumé, and four project case studies.
 
-Web Development Portfolio
+## Run locally
 
-Welcome to my web development portfolio! This repository showcases my skills, expertise, and projects in the field of web development. It serves as a comprehensive overview of my abilities and demonstrates my proficiency with various web technologies and frameworks.
-
-First, run the development server:
+Use Node.js 20 for this version of Next.js. A `.nvmrc` file is included for `nvm` users.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). For a production check, run `npm run build` and then `npm start`.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Structure
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- `pages/` contains the homepage, résumé, and project routes.
+- `components/` contains the shared navigation, sections, project cards, and case study layout.
+- `lib/projects.js` contains project text, links, and image references.
+- `styles/globals.css` contains the visual design and responsive layout.
+- `public/assets/` contains the portrait and screenshots used by the site.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Project details can be updated in `lib/projects.js`. The site links to Samuel’s LinkedIn and GitHub profiles for contact; there is no contact form or database configuration.
 
-## Learn More
+The site offers light and dark modes. It starts in dark mode and remembers a manual selection in local storage. The hero includes an interactive Three.js signal terrain made from animated data columns, light trails, and connected points. It pauses when out of view and honors reduced-motion preferences.
 
-To learn more about Next.js, take a look at the following resources:
+The background photographs are real images from Unsplash, stored locally in `public/assets/backgrounds/`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Hero code photograph: [Fili Santillán](https://unsplash.com/photos/a-computer-screen-with-a-bunch-of-code-on-it-1HCb2gPk3ik).
+- Analytics dashboard photograph: [Stephen Dawson](https://unsplash.com/photos/turned-on-monitoring-screen-qwtCeJ5cLYs).

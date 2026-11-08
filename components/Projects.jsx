@@ -1,29 +1,13 @@
-import React from 'react'
-import NetflixImg from '../public/assets/projects/Netflix.png'
-import PaypalImg from '../public/assets/projects/Paypal.png'
-import GameImg from '../public/assets/projects/Game.png'
-import EcommerceImg from '../public/assets/projects/Ecommerce.png'
 import ProjectItem from './ProjectItem'
+import { projects } from '../lib/projects'
 
-const Projects = () => {
+export default function Projects() {
   return (
-    <section id='projects' className='w-full scroll-mt-24 bg-slate-950/5 py-20'>
-      <div className='mx-auto max-w-[1140px] px-4'>
-        <div className='mx-auto max-w-3xl space-y-4 text-center'>
-          <p className='text-sm uppercase tracking-[0.35em] text-indigo-600'>Projects</p>
-          <h2 className='text-4xl font-extrabold text-slate-900'>Recent work with polished visual systems.</h2>
-          <p className='text-slate-600'>Each project showcases modern design, responsive interaction, and a refined user experience.</p>
-        </div>
-
-        <div className='grid gap-8 pt-12 md:grid-cols-2'>
-          <ProjectItem title='Movie Finder' backgroundImg={NetflixImg} projectUrl='/Netflix' />
-          <ProjectItem title='Payment App' backgroundImg={PaypalImg} projectUrl='/Paypal' />
-          <ProjectItem title='Game' backgroundImg={GameImg} projectUrl='/Game' />
-          <ProjectItem title='Ecommerce' backgroundImg={EcommerceImg} projectUrl='/Ecommerce' />
-        </div>
+    <section className='section projects-section' id='projects'>
+      <div className='container'>
+        <div className='work-heading'><div><p className='eyebrow'>02 / Selected work</p><h2>Ideas made <em>real.</em></h2></div><div className='work-heading-aside'><span>{String(projects.length).padStart(2, '0')} / Case studies</span><p>A collection of work across web applications, interaction, and data storytelling.</p></div></div>
+        <div className='projects-grid'>{projects.map((project, index) => <ProjectItem project={project} index={index} total={projects.length} key={project.slug} />)}</div>
       </div>
     </section>
   )
 }
-
-export default Projects
