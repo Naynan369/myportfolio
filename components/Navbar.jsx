@@ -52,8 +52,16 @@ export default function Navbar() {
       </div>
       <nav id='primary-navigation' className={open ? 'site-nav is-open' : 'site-nav'} aria-label='Main navigation' aria-hidden={!open}>
         <div className='container menu-layout'>
-          <div className='menu-links'>{links.map(link => <Link href={link.href} key={link.href}><a onClick={() => setOpen(false)}>{link.label}</a></Link>)}</div>
-          <div className='menu-aside'><p className='eyebrow'>A little more</p><div className='menu-art'><span>Code with character.<br />Data with direction.</span></div><div className='menu-aside-bottom'><span>Samuel Z. Tadesse<br />Developer &amp; data analyst</span><a href='https://www.linkedin.com/in/samuel369' target='_blank' rel='noopener noreferrer'>Connect</a></div></div>
+          <div className='menu-heading'><span className='eyebrow'>Explore the portfolio</span><span>Software · Data · Interaction</span></div>
+          <div className='menu-orbit'>
+            <div className='menu-core' aria-hidden='true'>
+              <div className='menu-core-ring' />
+              <div className='menu-core-media' />
+              <div className='menu-core-copy'><span>Software &amp; data</span><strong>Explore</strong></div>
+            </div>
+            <div className='menu-links'>{links.map(link => <Link href={link.href} key={link.href}><a onClick={() => setOpen(false)}>{link.label}</a></Link>)}</div>
+          </div>
+          <div className='menu-contact'><span>Samuel Z. Tadesse</span><div><a href='mailto:samuel.zewge@icloud.com'>Email</a><a href='https://www.linkedin.com/in/samuel369' target='_blank' rel='noopener noreferrer'>LinkedIn</a></div></div>
         </div>
       </nav>
     </header>

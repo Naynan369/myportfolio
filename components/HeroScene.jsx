@@ -45,6 +45,7 @@ export default function HeroScene() {
       let lastFrame = 0
       let width = 0
       let height = 0
+      let exclusionX = 0
       let labelSizes = []
 
       const draw = (time) => {
@@ -65,7 +66,7 @@ export default function HeroScene() {
           position.project(camera)
           const x = (position.x + 1) * width / 2
           const y = (1 - position.y) * height / 2
-          const leftFade = width < 520 ? 1 : clamp((x - width * 0.09) / (width * 0.2), 0, 1)
+          const leftFade = window.innerWidth <= 700 ? 1 : clamp((x - exclusionX) / (width * 0.18), 0, 1)
           const backFade = width < 520
             ? clamp((depth - 0.48) / 0.18, 0, 1)
             : clamp((depth - 0.17) / 0.32, 0, 1)
@@ -94,6 +95,7 @@ export default function HeroScene() {
         width = field.clientWidth
         height = field.clientHeight
         if (!width || !height) return
+        exclusionX = window.innerWidth <= 700 ? 0 : clamp(window.innerWidth * 0.7 - scene.getBoundingClientRect().left, 0, width * 0.7)
         labelSizes = labels.map(label => ({ width: label.offsetWidth, height: label.offsetHeight }))
         camera.position.set(0, 0.25, width < 520 ? 6.25 : 7.7)
         camera.lookAt(0, 0, 0)
