@@ -10,7 +10,6 @@
   "repository": "git+https://github.com/Naynan369/myportfolio.git",
   "license": "ISC",
   "author": "Naynan369 <nasaamazement321@gmail.com>",
-  "type": "commonjs",
   "main": "index.js",
   "directories": {
     "lib": "lib"
