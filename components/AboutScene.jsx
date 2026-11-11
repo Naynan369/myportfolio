@@ -34,11 +34,11 @@ export default function AboutScene() {
       network.position.x = -1.34
       sculpture.add(network)
 
-      const cool = new THREE.MeshStandardMaterial({ color: 0x7fabb8, metalness: 0.25, roughness: 0.62, emissive: 0x18343d, emissiveIntensity: 0.14 })
-      const warm = new THREE.MeshStandardMaterial({ color: 0xb49483, metalness: 0.25, roughness: 0.62, emissive: 0x3d2922, emissiveIntensity: 0.13 })
-      const pathMaterial = new THREE.MeshBasicMaterial({ color: 0x8aaeb9, transparent: true, opacity: 0.5, depthWrite: false })
-      const linkMaterial = new THREE.LineBasicMaterial({ color: 0x8299a2, transparent: true, opacity: 0.27, depthWrite: false })
-      resources.push(cool, warm, pathMaterial, linkMaterial)
+      const brass = new THREE.MeshStandardMaterial({ color: 0xc49a5a, metalness: 0.28, roughness: 0.58, emissive: 0x49351c, emissiveIntensity: 0.13 })
+      const terracotta = new THREE.MeshStandardMaterial({ color: 0xb45e48, metalness: 0.22, roughness: 0.64, emissive: 0x47211f, emissiveIntensity: 0.12 })
+      const pathMaterial = new THREE.MeshBasicMaterial({ color: 0xd2a05e, transparent: true, opacity: 0.52, depthWrite: false })
+      const linkMaterial = new THREE.LineBasicMaterial({ color: 0xa65a54, transparent: true, opacity: 0.32, depthWrite: false })
+      resources.push(brass, terracotta, pathMaterial, linkMaterial)
 
       const nodes = []
       const columns = [-0.9, -0.08, 0.76]
@@ -69,7 +69,7 @@ export default function AboutScene() {
       const nodeGeometry = new THREE.IcosahedronGeometry(0.075, 1)
       resources.push(nodeGeometry)
       nodes.forEach((position, index) => {
-        const node = new THREE.Mesh(nodeGeometry, index % 5 === 0 ? warm : cool)
+        const node = new THREE.Mesh(nodeGeometry, index % 5 === 0 ? terracotta : brass)
         node.position.copy(position)
         node.scale.setScalar(index % 7 === 0 ? 1.25 : 1)
         network.add(node)
@@ -82,7 +82,7 @@ export default function AboutScene() {
 
       ;[4, 13, 22].forEach((index) => {
         const geometry = new THREE.TorusGeometry(0.17, 0.01, 5, 32)
-        const material = new THREE.MeshBasicMaterial({ color: 0xb49483, transparent: true, opacity: 0.3, depthWrite: false })
+        const material = new THREE.MeshBasicMaterial({ color: 0xc77c55, transparent: true, opacity: 0.33, depthWrite: false })
         const halo = new THREE.Mesh(geometry, material)
         halo.position.copy(nodes[index])
         network.add(halo)
@@ -93,9 +93,9 @@ export default function AboutScene() {
       orbit.position.set(0.32, 0.04, -0.55)
       sculpture.add(orbit)
       ;[
-        { radius: 2.2, rotation: [0.64, 0.28, 0.2], color: 0x7fabb8, opacity: 0.22 },
-        { radius: 1.86, rotation: [1.13, -0.62, 0.5], color: 0xb49483, opacity: 0.3 },
-        { radius: 2.45, rotation: [0.34, 1.02, -0.25], color: 0x8599a4, opacity: 0.12 },
+        { radius: 2.2, rotation: [0.64, 0.28, 0.2], color: 0xc49a5a, opacity: 0.24 },
+        { radius: 1.86, rotation: [1.13, -0.62, 0.5], color: 0xb45e48, opacity: 0.32 },
+        { radius: 2.45, rotation: [0.34, 1.02, -0.25], color: 0x9b6f4a, opacity: 0.15 },
       ].forEach(({ radius, rotation, color, opacity }) => {
         const geometry = new THREE.TorusGeometry(radius, 0.014, 5, 160)
         const material = new THREE.MeshBasicMaterial({ color, transparent: true, opacity, depthWrite: false })
@@ -107,15 +107,15 @@ export default function AboutScene() {
 
       const particles = new Float32Array(90 * 3)
       const particleColors = new Float32Array(90 * 3)
-      const blue = new THREE.Color(0x84a9b5)
-      const peach = new THREE.Color(0xb99c8e)
+      const brassParticle = new THREE.Color(0xcaa05d)
+      const clayParticle = new THREE.Color(0xbd7053)
       for (let index = 0; index < 90; index += 1) {
         const angle = index * 2.399963
         const radius = 0.45 + Math.sqrt(index / 90) * 2.35
         particles[index * 3] = Math.cos(angle) * radius
         particles[index * 3 + 1] = Math.sin(angle) * radius * 0.92
         particles[index * 3 + 2] = Math.sin(index * 1.91) * 1.1 - 0.8
-        ;(index % 3 === 0 ? peach : blue).toArray(particleColors, index * 3)
+        ;(index % 3 === 0 ? clayParticle : brassParticle).toArray(particleColors, index * 3)
       }
       const particleGeometry = new THREE.BufferGeometry()
       particleGeometry.setAttribute('position', new THREE.BufferAttribute(particles, 3))
@@ -125,11 +125,11 @@ export default function AboutScene() {
       resources.push(particleGeometry, particleMaterial)
 
       scene.add(new THREE.AmbientLight(0xffffff, 1.0))
-      const coolLight = new THREE.PointLight(0x9bb5bf, 7, 12)
-      coolLight.position.set(-2.5, 2, 3)
-      const warmLight = new THREE.PointLight(0xbda194, 5, 12)
-      warmLight.position.set(2.5, -1, 2)
-      scene.add(coolLight, warmLight)
+      const brassLight = new THREE.PointLight(0xd4ad68, 5, 12)
+      brassLight.position.set(-2.5, 2, 3)
+      const clayLight = new THREE.PointLight(0xc27459, 4, 12)
+      clayLight.position.set(2.5, -1, 2)
+      scene.add(brassLight, clayLight)
 
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
       const pointer = { x: 0, y: 0 }

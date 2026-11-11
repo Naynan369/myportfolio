@@ -12,13 +12,13 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState('light')
   const [activeLink, setActiveLink] = useState(null)
   const posterRef = useRef(null)
   const displayWord = activeLink === null ? 'EXPLORE' : links[activeLink].display
 
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme || 'dark')
+    setTheme(document.documentElement.dataset.theme || 'light')
   }, [])
 
   useEffect(() => {
