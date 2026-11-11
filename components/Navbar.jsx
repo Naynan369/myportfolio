@@ -1,55 +1,21 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const links = [
-  { href: '/#home', label: 'Home' },
-  { href: '/#about', label: 'About' },
-  { href: '/#projects', label: 'Selected work' },
-  { href: '/#skills', label: 'Capabilities' },
-  { href: '/resume', label: 'Résumé' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/#home', label: 'Home', display: 'HOME' },
+  { href: '/#about', label: 'About', display: 'ABOUT' },
+  { href: '/#projects', label: 'Selected work', display: 'WORK' },
+  { href: '/#skills', label: 'Capabilities', display: 'SKILLS' },
+  { href: '/resume', label: 'Résumé', display: 'RÉSUMÉ' },
+  { href: '/#contact', label: 'Contact', display: 'CONTACT' },
 ]
-
-const meshPoint = (row, column) => {
-  const x = 18 + column * 12.8
-  const baseY = 34 + row * 12.2
-  const taper = Math.sin(Math.PI * x / 240)
-  const rise = Math.exp(-Math.pow((x - 132) / 58, 2)) * Math.exp(-Math.pow((row - 7) / 5, 2)) * 23
-  const wave = Math.sin(x / 29 + row * .27) * (8 + 10 * Math.exp(-Math.pow((row - 7) / 5, 2))) * taper
-  return [x, baseY + wave - rise]
-}
-
-const meshRows = Array.from({ length: 15 }, (_, row) => Array.from({ length: 17 }, (_, column) => meshPoint(row, column)))
-const meshColumns = Array.from({ length: 17 }, (_, column) => meshRows.map(row => row[column]))
-const meshPath = points => points.map(([x, y], index) => `${index ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join('')
-
-function MenuDataArt() {
-  return (
-    <svg className='menu-data-art' viewBox='0 0 240 240' aria-hidden='true' focusable='false'>
-      <defs>
-        <linearGradient id='menu-mesh-stroke' x1='0' y1='1' x2='1' y2='0'>
-          <stop offset='0%' stopColor='#4f7484' />
-          <stop offset='52%' stopColor='#b8a69b' />
-          <stop offset='100%' stopColor='#e4b99a' />
-        </linearGradient>
-      </defs>
-      <circle className='menu-data-halo' cx='120' cy='120' r='91' />
-      <g className='menu-data-mesh'>
-        {meshRows.map((points, index) => <path className='menu-data-thread' d={meshPath(points)} key={`row-${index}`} />)}
-        {meshColumns.map((points, index) => <path className='menu-data-thread menu-data-thread--cross' d={meshPath(points)} key={`column-${index}`} />)}
-      </g>
-      <circle className='menu-data-beacon' cx={meshRows[5][12][0]} cy={meshRows[5][12][1]} r='3.5' />
-      <circle className='menu-data-beacon-ring' cx={meshRows[5][12][0]} cy={meshRows[5][12][1]} r='10' />
-      <text className='menu-data-caption' x='31' y='29'>DATA / CODE</text>
-      <text className='menu-data-caption menu-data-caption--end' x='209' y='218' textAnchor='end'>SIGNAL / STRUCTURE</text>
-    </svg>
-  )
-}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [theme, setTheme] = useState('dark')
   const [activeLink, setActiveLink] = useState(null)
+  const posterRef = useRef(null)
+  const displayWord = activeLink === null ? 'EXPLORE' : links[activeLink].display
 
   useEffect(() => {
     setTheme(document.documentElement.dataset.theme || 'dark')
@@ -74,6 +40,22 @@ export default function Navbar() {
     setTheme(nextTheme)
   }
 
+  const movePoster = (event) => {
+    if (event.pointerType === 'touch' || !posterRef.current) return
+    const rect = posterRef.current.getBoundingClientRect()
+    const x = ((event.clientX - rect.left) / rect.width - .5) * 28
+    const y = ((event.clientY - rect.top) / rect.height - .5) * 18
+    posterRef.current.style.setProperty('--poster-x', `${x.toFixed(1)}px`)
+    posterRef.current.style.setProperty('--poster-y', `${y.toFixed(1)}px`)
+  }
+
+  const resetPoster = () => {
+    setActiveLink(null)
+    if (!posterRef.current) return
+    posterRef.current.style.setProperty('--poster-x', '0px')
+    posterRef.current.style.setProperty('--poster-y', '0px')
+  }
+
   return (
     <header className={open ? 'site-header menu-active' : 'site-header'}>
       <div className='container nav-inner'>
@@ -90,23 +72,15 @@ export default function Navbar() {
       <nav id='primary-navigation' className={open ? 'site-nav is-open' : 'site-nav'} aria-label='Main navigation' aria-hidden={!open}>
         <div className='container menu-layout'>
           <div className='menu-heading'><span className='eyebrow'>Navigation</span><span className='menu-heading-rule' aria-hidden='true' /><span>Software · Data · Interaction</span></div>
-          <div className='menu-stage'>
-            <div className='menu-intro'>
-              <span className='menu-intro-kicker'>Samuel Z. Tadesse / Portfolio</span>
-              <h2>Explore{' '}<br /><em>the work.</em></h2>
-              <p>Software built with care.{' '}<br />Data made clear.</p>
-              <div className='menu-intro-foot'>A closer look at the work and the thinking behind it.</div>
+          <div className='menu-poster' ref={posterRef} onPointerMove={movePoster} onPointerLeave={resetPoster}>
+            <div className='menu-poster-type' aria-hidden='true'>
+              <span className='menu-poster-outline' key={`outline-${displayWord}`}>{displayWord}</span>
+              <strong className='menu-poster-word' key={displayWord}>{displayWord}<i>.</i></strong>
+              <span className='menu-poster-byline'>Samuel Z. Tadesse<br />Software / Data</span>
             </div>
-            <div className={activeLink === null ? 'menu-orbit' : 'menu-orbit has-active'} style={{ '--active-angle': `${(activeLink || 0) * 60}deg` }} onMouseLeave={() => setActiveLink(null)}>
-              <svg className='menu-orbit-trace' viewBox='0 0 100 100' aria-hidden='true' focusable='false'>
-                <circle cx='50' cy='50' r='46' pathLength='100' />
-              </svg>
-              <span className='menu-orbit-marker' aria-hidden='true' />
-              <div className='menu-core' aria-hidden='true'>
-                <div className='menu-core-ring' />
-                <div className='menu-core-media'><MenuDataArt /></div>
-              </div>
-              <div className='menu-links'>{links.map((link, index) => <Link href={link.href} key={link.href}><a onMouseEnter={() => setActiveLink(index)} onFocus={() => setActiveLink(index)} onBlur={() => setActiveLink(null)} onClick={() => { setActiveLink(null); setOpen(false) }}>{link.label}</a></Link>)}</div>
+            <div className='menu-poster-bottom'>
+              <div className='menu-poster-note'><span>Inside this portfolio</span><p>Software, data, and the thinking behind the work.</p></div>
+              <div className='menu-poster-links' onMouseLeave={() => setActiveLink(null)}>{links.map((link, index) => <Link href={link.href} key={link.href}><a onMouseEnter={() => setActiveLink(index)} onFocus={() => setActiveLink(index)} onBlur={() => setActiveLink(null)} onClick={() => { setActiveLink(null); setOpen(false) }}>{link.label}</a></Link>)}</div>
             </div>
           </div>
           <div className='menu-contact'><span>Open to internships and thoughtful projects</span><div><a href='mailto:samuel.zewge@icloud.com'>Email</a><a href='https://www.linkedin.com/in/samuel369' target='_blank' rel='noopener noreferrer'>LinkedIn</a></div></div>
