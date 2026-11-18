@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { dataAnalysisTools, dataTools } from '../lib/dataTools'
+import { useMessages } from '../lib/i18n'
 
 const TAU = Math.PI * 2
 const PHASES = [0, 2.18, 4.34]
@@ -16,6 +17,7 @@ function pointOnStrand(THREE, angle, phase) {
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
 
 export default function HeroScene() {
+  const t = useMessages().home
   const fieldRef = useRef(null)
 
   useEffect(() => {
@@ -179,7 +181,7 @@ export default function HeroScene() {
   }, [])
 
   return (
-    <div className='hero-scene hero-tool-scene' role='group' aria-label='Animated data tools'>
+    <div className='hero-scene hero-tool-scene' role='group' aria-label={t.animatedTools}>
       <div className='hero-tool-field' ref={fieldRef} aria-hidden='true'>
         {dataTools.map((name, index) => (
           <span

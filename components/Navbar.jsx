@@ -1,21 +1,21 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
-
-const links = [
-  { href: '/#home', label: 'Home', display: 'HOME' },
-  { href: '/#about', label: 'About', display: 'ABOUT' },
-  { href: '/#projects', label: 'Selected work', display: 'WORK' },
-  { href: '/#skills', label: 'Capabilities', display: 'SKILLS' },
-  { href: '/resume', label: 'Résumé', display: 'RÉSUMÉ' },
-  { href: '/#contact', label: 'Contact', display: 'CONTACT' },
-]
+import { useMessages } from '../lib/i18n'
 
 export default function Navbar() {
+  const router = useRouter()
+  const t = useMessages().nav
+  const links = [
+    { href: '/#home', label: t.home }, { href: '/#about', label: t.about },
+    { href: '/#projects', label: t.work }, { href: '/#skills', label: t.skills },
+    { href: '/resume', label: t.resume }, { href: '/#contact', label: t.contact },
+  ]
   const [open, setOpen] = useState(false)
   const [theme, setTheme] = useState('light')
   const [activeLink, setActiveLink] = useState(null)
   const posterRef = useRef(null)
-  const displayWord = activeLink === null ? 'EXPLORE' : links[activeLink].display
+  const displayWord = activeLink === null ? t.explore : t.displays[activeLink]
 
   useEffect(() => {
     setTheme(document.documentElement.dataset.theme || 'light')
@@ -40,6 +40,13 @@ export default function Navbar() {
     setTheme(nextTheme)
   }
 
+  const switchLanguage = (locale) => {
+    if (locale === router.locale) return
+    setOpen(false)
+    setActiveLink(null)
+    router.push(router.asPath, router.asPath, { locale, scroll: false })
+  }
+
   const movePoster = (event) => {
     if (event.pointerType === 'touch' || !posterRef.current) return
     const rect = posterRef.current.getBoundingClientRect()
@@ -59,31 +66,35 @@ export default function Navbar() {
   return (
     <header className={open ? 'site-header menu-active' : 'site-header'}>
       <div className='container nav-inner'>
-        <Link href='/'><a className='brand' onClick={() => setOpen(false)} aria-label='Samuel Z. Tadesse, home'><span className='brand-mark'>ST.</span><span className='brand-copy'><strong>Samuel Z. Tadesse</strong><small>Developer &amp; data analyst</small></span></a></Link>
-        <div className='nav-signature' aria-hidden='true'><span className='nav-signal' />Web / Data / Interaction</div>
+        <Link href='/'><a className='brand' onClick={() => setOpen(false)} aria-label={`Samuel Z. Tadesse, ${t.home}`}><span className='brand-mark'>ST.</span><span className='brand-copy'><strong>Samuel Z. Tadesse</strong><small>{t.subtitle}</small></span></a></Link>
+        <div className='nav-signature' aria-hidden='true'><span className='nav-signal' />{t.signature}</div>
         <div className='nav-actions'>
-          <button className='theme-toggle' type='button' onClick={toggleTheme} aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} aria-pressed={theme === 'dark'} title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+          <div className='language-switch' role='group' aria-label={t.language}>
+            <button type='button' lang='en' aria-label='English' aria-pressed={router.locale === 'en'} onClick={() => switchLanguage('en')}>EN</button>
+            <button type='button' lang='it' aria-label='Italiano' aria-pressed={router.locale === 'it'} onClick={() => switchLanguage('it')}>IT</button>
+          </div>
+          <button className='theme-toggle' type='button' onClick={toggleTheme} aria-label={theme === 'dark' ? t.light : t.dark} aria-pressed={theme === 'dark'} title={theme === 'dark' ? t.light : t.dark}>
             <svg className='theme-sun' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.7' aria-hidden='true'><circle cx='12' cy='12' r='4' /><path d='M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42' /></svg>
             <svg className='theme-moon' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.7' aria-hidden='true'><path d='M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z' /></svg>
           </button>
-          <button className={open ? 'menu-toggle is-open' : 'menu-toggle'} type='button' aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls='primary-navigation' onClick={() => { setActiveLink(null); setOpen(!open) }}><span className='menu-label'>{open ? 'Close' : 'Menu'}</span><span className='hamburger-lines' aria-hidden='true'><i /><i /><i /></span></button>
+          <button className={open ? 'menu-toggle is-open' : 'menu-toggle'} type='button' aria-label={open ? `${t.close} ${t.menu}` : `${t.menu}`} aria-expanded={open} aria-controls='primary-navigation' onClick={() => { setActiveLink(null); setOpen(!open) }}><span className='menu-label'>{open ? t.close : t.menu}</span><span className='hamburger-lines' aria-hidden='true'><i /><i /><i /></span></button>
         </div>
       </div>
-      <nav id='primary-navigation' className={open ? 'site-nav is-open' : 'site-nav'} aria-label='Main navigation' aria-hidden={!open}>
+      <nav id='primary-navigation' className={open ? 'site-nav is-open' : 'site-nav'} aria-label={t.mainNav} aria-hidden={!open}>
         <div className='container menu-layout'>
-          <div className='menu-heading'><span className='eyebrow'>Navigation</span><span className='menu-heading-rule' aria-hidden='true' /><span>Software · Data · Interaction</span></div>
+          <div className='menu-heading'><span className='eyebrow'>{t.navigation}</span><span className='menu-heading-rule' aria-hidden='true' /><span>{t.posterLine}</span></div>
           <div className='menu-poster' ref={posterRef} onPointerMove={movePoster} onPointerLeave={resetPoster}>
-            <div className='menu-poster-type' aria-hidden='true'>
+            <div className={displayWord.length > 8 ? 'menu-poster-type is-long' : 'menu-poster-type'} aria-hidden='true'>
               <span className='menu-poster-outline' key={`outline-${displayWord}`}>{displayWord}</span>
               <strong className='menu-poster-word' key={displayWord}>{displayWord}<i>.</i></strong>
-              <span className='menu-poster-byline'>Samuel Z. Tadesse<br />Software / Data</span>
+              <span className='menu-poster-byline'>Samuel Z. Tadesse<br />{t.byline}</span>
             </div>
             <div className='menu-poster-bottom'>
-              <div className='menu-poster-note'><span>Inside this portfolio</span><p>Software, data, and the thinking behind the work.</p></div>
+              <div className='menu-poster-note'><span>{t.inside}</span><p>{t.note}</p></div>
               <div className='menu-poster-links' onMouseLeave={() => setActiveLink(null)}>{links.map((link, index) => <Link href={link.href} key={link.href}><a onMouseEnter={() => setActiveLink(index)} onFocus={() => setActiveLink(index)} onBlur={() => setActiveLink(null)} onClick={() => { setActiveLink(null); setOpen(false) }}>{link.label}</a></Link>)}</div>
             </div>
           </div>
-          <div className='menu-contact'><span>Open to internships and thoughtful projects</span><div><a href='mailto:samuel.zewge@icloud.com'>Email</a><a href='https://www.linkedin.com/in/samuel369' target='_blank' rel='noopener noreferrer'>LinkedIn</a></div></div>
+          <div className='menu-contact'><span>{t.availability}</span><div><a href='mailto:samuel.zewge@icloud.com'>{t.email}</a><a href='https://www.linkedin.com/in/samuel369' target='_blank' rel='noopener noreferrer'>LinkedIn</a></div></div>
         </div>
       </nav>
     </header>

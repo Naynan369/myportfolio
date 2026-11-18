@@ -4,6 +4,6 @@ const themeScript = `(function(){try{var saved=localStorage.getItem('portfolio-t
 
 export default class MyDocument extends Document {
   render() {
-    return <Html lang='en'><Head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></Head><body><Main /><NextScript /></body></Html>
+    return <Html lang={this.props.__NEXT_DATA__.locale || 'en'}><Head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></Head><body><Main /><NextScript /></body></Html>
   }
 }
