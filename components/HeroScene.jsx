@@ -124,20 +124,21 @@ export default function HeroScene() {
         window.cancelAnimationFrame(frameId)
         frameId = 0
         lastFrame = 0
+        if (motionPreference.matches) {
+          pointer.x = 0
+          pointer.y = 0
+          pointer.targetX = 0
+          pointer.targetY = 0
+        }
         draw(elapsed)
         if (!motionPreference.matches && !document.hidden && visible) frameId = window.requestAnimationFrame(tick)
       }
 
       const movePointer = (event) => {
-        if (event.pointerType === 'touch') return
+        if (event.pointerType === 'touch' || motionPreference.matches) return
         const bounds = scene.getBoundingClientRect()
         pointer.targetX = clamp(((event.clientX - bounds.left) / bounds.width - 0.5) * 0.7, -0.35, 0.35)
         pointer.targetY = clamp(((event.clientY - bounds.top) / bounds.height - 0.5) * 0.45, -0.225, 0.225)
-        if (motionPreference.matches) {
-          pointer.x = pointer.targetX
-          pointer.y = pointer.targetY
-          draw(elapsed)
-        }
       }
       const resetPointer = () => {
         pointer.targetX = 0

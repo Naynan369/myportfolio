@@ -1,26 +1,21 @@
-import Head from 'next/head'
+import { getTranslationPageProps } from '../lib/googleTranslate'
+import Seo from '../components/Seo'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import Contact from '../components/Contact'
-import { getProjects } from '../lib/projects'
+import { featuredProjectSlugs } from '../lib/projects'
+import { useProjects } from '../lib/TranslationContext'
 import { useMessages } from '../lib/i18n'
 
-const featuredSlugs = ['ecommerce', 'habesha-brokers', 'evently']
-
 export default function Resume() {
-  const { locale } = useRouter()
   const t = useMessages().resume
-  const featuredProjects = featuredSlugs.map(slug => getProjects(locale).find(project => project.slug === slug))
+  const projects = useProjects()
+  const featuredProjects = featuredProjectSlugs.map(slug => projects.find(project => project.slug === slug))
 
   return <>
-    <Head>
-      <title>{t.title}</title>
-      <meta name='description' content={t.description} />
-      <link rel='icon' href='/favicon.svg' />
-    </Head>
-    <main id='home' className='resume-page'>
+    <Seo title={t.title} description={t.description} path='/resume' />
+    <main id='main-content' tabIndex={-1} className='resume-page'>
       <div className='container'>
-        <Link href='/'><a className='back-link'>{t.back}</a></Link>
+        <Link href='/' className='back-link'>{t.back}</Link>
         <div className='resume-header'>
           <div>
             <p className='eyebrow'>{t.label}</p>
@@ -28,7 +23,7 @@ export default function Resume() {
           </div>
           <div className='resume-header-aside'>
             <p>{t.intro}</p>
-            <a className='button button-light' href='/Samuel_Tadesse_CV.pdf' download>{t.download}</a>
+            <a className='button button-light' href='/Samuel_Tadesse_CV.pdf' hrefLang='en' download>{t.download}</a>
           </div>
         </div>
         <div className='resume-layout'>
@@ -51,9 +46,9 @@ export default function Resume() {
               <p className='eyebrow'>{t.projectsLabel}</p>
               <h2>{t.projects}</h2>
               <div className='resume-projects'>
-                {featuredProjects.map(project => <div key={project.slug}><Link href={project.route}><a>{project.title}</a></Link><p>{project.summary}</p></div>)}
+                {featuredProjects.map(project => <div key={project.slug}><Link href={project.route}>{project.title}</Link><p>{project.summary}</p></div>)}
               </div>
-              <Link href='/#projects'><a className='text-link'>{t.all}</a></Link>
+              <Link href='/#projects' className='text-link'>{t.all}</Link>
             </section>
           </div>
           <aside>
@@ -72,4 +67,8 @@ export default function Resume() {
     </main>
     <Contact />
   </>
+}
+
+export async function getServerSideProps(context) {
+  return getTranslationPageProps(context)
 }

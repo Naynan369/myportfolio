@@ -1,13 +1,25 @@
+import { useMessages } from '../lib/i18n'
 import Navbar from '../components/Navbar'
+import TranslationNotice from '../components/TranslationNotice'
+import { TranslationContext } from '../lib/TranslationContext'
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
+function AppContent({ Component, pageProps }) {
+  const t = useMessages().nav
   return (
     <>
+      <a className='skip-link' href='#main-content'>{t.skip}</a>
       <Navbar />
-      <Component {...pageProps} />
+      <TranslationNotice />
+      <div id='page-content'>
+        <Component {...pageProps} />
+      </div>
     </>
   )
 }
 
-export default MyApp
+export default function MyApp({ Component, pageProps }) {
+  return <TranslationContext.Provider value={pageProps.translationBundle || null}>
+    <AppContent Component={Component} pageProps={pageProps} />
+  </TranslationContext.Provider>
+}

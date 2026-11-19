@@ -2,7 +2,7 @@
   "name": "samuel-portfolio",
   "version": "0.1.0",
   "private": true,
-  "description": "A personal portfolio built with Next.js and React. It includes a homepage, a résumé, and four project case studies.",
+  "description": "A bilingual personal portfolio with seven project case studies and a downloadable r\u00e9sum\u00e9.",
   "homepage": "https://github.com/Naynan369/myportfolio#readme",
   "bugs": {
     "url": "https://github.com/Naynan369/myportfolio/issues"
@@ -18,17 +18,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "next": "12.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "three": "^0.160.1"
   },
   "devDependencies": {
-    "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5"
+    "eslint": "10.15.0",
+    "eslint-config-next": "16.4.6"
   },
   "engines": {
     "node": "^24.22.0"

@@ -14,10 +14,10 @@ export default function About() {
         <div className='about-photo-wrap'>
           <AboutScene />
           <div className='about-photo'>
-            <Image src={portrait} alt={t.photo} layout='fill' objectFit='cover' objectPosition='50% 33%' quality={95} sizes='(max-width: 700px) 62vw, 360px' />
+            <Image src={portrait} alt={t.photo} fill style={{ objectFit: 'cover', objectPosition: '50% 33%' }} quality={95} sizes='(max-width: 700px) 62vw, 360px' />
           </div>
         </div>
-        <div className='about-copy'><p>{t.lead}</p><p>{t.body}</p><div className='about-tags' aria-label={t.interests}>{t.tags.map(tag => <span key={tag}>{tag}</span>)}</div><Link href='/resume'><a className='text-link'>{t.resume}</a></Link></div>
+        <div className='about-copy'><p>{t.lead}</p><p>{t.body}</p><div className='about-tags' aria-label={t.interests}>{t.tags.map(tag => <span key={tag}>{tag}</span>)}</div><Link href='/resume' className='text-link'>{t.resume}</Link></div>
       </div>
     </section>
   )
