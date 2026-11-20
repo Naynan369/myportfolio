@@ -2,7 +2,7 @@
   "name": "samuel-portfolio",
   "version": "0.1.0",
   "private": true,
-  "description": "A bilingual personal portfolio with seven project case studies and a downloadable r\u00e9sum\u00e9.",
+  "description": "A bilingual personal portfolio with seven project case studies and a downloadable résumé.",
   "homepage": "https://github.com/Naynan369/myportfolio#readme",
   "bugs": {
     "url": "https://github.com/Naynan369/myportfolio/issues"
@@ -18,7 +18,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "next": "16.4.6",
@@ -27,6 +29,7 @@
     "three": "^0.160.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "eslint": "10.15.0",
     "eslint-config-next": "16.4.6"
   },

@@ -1,6 +1,5 @@
 import { useMessages } from '../lib/i18n'
 import Navbar from '../components/Navbar'
-import TranslationNotice from '../components/TranslationNotice'
 import { TranslationContext } from '../lib/TranslationContext'
 import '../styles/globals.css'
 
@@ -10,7 +9,6 @@ function AppContent({ Component, pageProps }) {
     <>
       <a className='skip-link' href='#main-content'>{t.skip}</a>
       <Navbar />
-      <TranslationNotice />
       <div id='page-content'>
         <Component {...pageProps} />
       </div>

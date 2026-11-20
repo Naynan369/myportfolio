@@ -13,6 +13,23 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000). Run `npm run lint` to check the code. For a production check, run `npm run build` and then `npm start`.
 
+## Automated checks
+
+GitHub Actions runs lint, unit tests, a production build, and browser checks for pushes and pull requests to `main`. The browser checks use a local Google Translate response fixture, so CI needs no Google API key and sends no translation requests to Google.
+
+Run the same checks locally with Node.js 24.22.0:
+
+```bash
+npm ci
+npm run lint
+npm test
+npm run build
+npx playwright install chromium
+npm run test:e2e
+```
+
+The browser suite starts its own local server on port 3101. Install browser system dependencies if Playwright requests them on your machine.
+
 ## Structure
 
 - `pages/` contains the homepage, résumé, and project routes.
