@@ -34,3 +34,19 @@ test('translates the Evently case study and keeps its demo link', async ({ page 
   await expect(page.locator('html')).toHaveAttribute('lang', 'it-x-mtfrom-en')
   await expect(page.locator('.contact-section .translation-notice')).toHaveCount(1)
 })
+
+test('shows Pantry in the project list and its case study in both languages', async ({ page }) => {
+  await page.goto('/')
+  const card = page.locator('.project-card--food-delivery')
+  await expect(card.getByRole('heading', { name: 'Pantry' })).toBeVisible()
+  await card.getByRole('link', { name: 'View case study: Pantry' }).click()
+  await expect(page).toHaveURL('/food-delivery')
+  await expect(page.getByRole('heading', { name: 'Pantry', exact: true })).toBeVisible()
+  await expect(page.locator('.detail-gallery img')).toHaveCount(2)
+  await expect(page.getByRole('link', { name: 'Request a walkthrough' })).toHaveAttribute('href', 'mailto:samuel.zewge@icloud.com?subject=Pantry%20project%20walkthrough')
+
+  await page.goto('/it/food-delivery')
+  await expect(page.getByRole('heading', { name: 'Pantry', exact: true })).toBeVisible()
+  await expect(page.locator('.detail-lead')).toContainText('IT A grocery replacement app')
+  await expect(page.getByRole('link', { name: 'IT Request a walkthrough' })).toBeVisible()
+})

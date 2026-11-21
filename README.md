@@ -1,6 +1,6 @@
 # Samuel Z. Tadesse portfolio
 
-A bilingual portfolio built with Next.js 16 and React 19. It includes seven project case studies and a résumé with a PDF download.
+A bilingual portfolio built with Next.js 16 and React 19. It includes eight project case studies and a résumé with a PDF download.
 
 ## Run locally
 
